@@ -22,14 +22,10 @@ public class Base : MonoBehaviour {
 
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
-        //right
-        //Instantiate(tile, new Vector3(3.5f, 0, -1.1f), transform.rotation);
-        //left
-        //Instantiate(tile, new Vector3(-3.5f, 0, -1.1f), transform.rotation);
-        //up
-        //Instantiate(tile, new Vector3(-1.1f, 0, 3.5f), transform.rotation);
-        //down
-        //Instantiate(tile, new Vector3(-1.1f, 0, -3.5f), transform.rotation);
+        Instantiate(tile, new Vector3(transform.position.x - 5f, transform.position.y - 1f, transform.position.z), transform.rotation);
+        Instantiate(tile, new Vector3(transform.position.x + 5f, transform.position.y - 1f, transform.position.z), transform.rotation);
+        Instantiate(tile, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z + 5f), transform.rotation);
+        Instantiate(tile, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z - 5f), transform.rotation);
     }
 	
 	// Update is called once per frame
@@ -66,14 +62,6 @@ public class Base : MonoBehaviour {
             Instantiate(tile, new Vector3(3.5f, 0, -1.1f), transform.rotation);
         }
     }*/
-
-    public void Upgrade()
-    {
-        Instantiate(tile, new Vector3(-5f, 0, 5f), transform.rotation);
-        Instantiate(tile, new Vector3(-5f, 0, -5f), transform.rotation);
-        Instantiate(tile, new Vector3(5f, 0, 5f), transform.rotation);
-        Instantiate(tile, new Vector3(5f, 0, -5f), transform.rotation);
-    }
 
     private bool isShowing;
 }
