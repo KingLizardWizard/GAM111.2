@@ -3,18 +3,22 @@ using System.Collections;
 
 public class Tile : MonoBehaviour {
     Base baseObject;
+    GameController gameController;
+
     public GameObject buildingDisplay;
     public GameObject house;
-    public GameObject tile;
+    public GameObject powerStation;
+    public GameObject metalFactory;
 
-    GameController gameController;
-    Tile tileSpawn;
+    private int housePrice;
+    private int powerPlantPrice;
+
+    private bool buildReady = true;
 
 	// Use this for initialization
 	void Start () {
         baseObject = GameObject.FindGameObjectWithTag("Base").GetComponent<Base>();
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        tileSpawn = GameObject.FindGameObjectWithTag("tileSpawn").GetComponent<Tile>();
     }
 	
 	// Update is called once per frame
@@ -24,27 +28,37 @@ public class Tile : MonoBehaviour {
 
     void OnMouseOver()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && buildReady == true)
         {
-            if (baseObject.building == 1 && gameController.wood >= 100)
+            if (baseObject.building == 1 && gameController.houseReady == true)
             {
-                gameController.wood -= 100;
+                gameController.wood -= gameController.housePrice;
                 Instantiate(house, transform.position, transform.rotation);
+                buildReady = false;
             }
+            else
+                Debug.Log("Not Enough Resources!");
+
+            if (baseObject.building == 2 && gameController.powerPlantReady == true)
+            {
+                gameController.metal -= gameController.powerPlantPrice;
+                Instantiate(powerStation, transform.position, transform.rotation);
+                buildReady = false;
+            }
+            else
+                Debug.Log("Not Enough Resources!");
+
+            if (baseObject.building == 3 && gameController.metalFactoryReady == true)
+            {
+                gameController.wood -= gameController.metalFactoryWoodPrice;
+                gameController.metal -= gameController.metalFactoryMetalPrice;
+                Instantiate(metalFactory, transform.position, transform.rotation);
+                buildReady = false;
+            }
+            else
+                Debug.Log("Not Enough Resources!");
+ 
         }
-    }
-
-    public void UpgradeClick()
-    {
-        tileSpawn.Upgrade();
-    }
-
-    public void Upgrade()
-    {
-        Instantiate(tile, new Vector3(transform.position.x - 5f, transform.position.y - 1f, transform.position.z), transform.rotation);
-        Instantiate(tile, new Vector3(transform.position.x + 5f, transform.position.y - 1f, transform.position.z), transform.rotation);
-        Instantiate(tile, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z + 5f), transform.rotation);
-        Instantiate(tile, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z - 5f), transform.rotation);
     }
 
     void OnMouseEnter()

@@ -39,6 +39,10 @@ public class Villager : MonoBehaviour {
     {
         if (other.tag == "Cover")
             hidden = true;
+        if (other.tag == "UFO")
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void OnTriggerExit(Collider other)

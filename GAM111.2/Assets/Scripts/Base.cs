@@ -14,18 +14,21 @@ public class Base : MonoBehaviour {
 
     GameController gameController;
 
+    public int upgradeCount;
+
     Queue<Vector3> buildingQueue = new Queue<Vector3>();
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         menu.SetActive(isShowing);
 
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
-        Instantiate(tile, new Vector3(transform.position.x - 5f, transform.position.y - 1f, transform.position.z), transform.rotation);
-        Instantiate(tile, new Vector3(transform.position.x + 5f, transform.position.y - 1f, transform.position.z), transform.rotation);
-        Instantiate(tile, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z + 5f), transform.rotation);
-        Instantiate(tile, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z - 5f), transform.rotation);
+        Instantiate(tile, new Vector3(transform.position.x + 5f,transform.position.y - 1, transform.position.z), transform.rotation);
+        Instantiate(tile, new Vector3(transform.position.x - 5f, transform.position.y - 1, transform.position.z), transform.rotation);
+        Instantiate(tile, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z + 5f), transform.rotation);
+        Instantiate(tile, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z - 5f), transform.rotation);
+
     }
 	
 	// Update is called once per frame
@@ -46,22 +49,43 @@ public class Base : MonoBehaviour {
 
     public void HouseBuild()
     {
-        if (gameController.wood >= 100)
-        {
             building = 1;
-        }
-        else
-            Debug.Log("Not Enough Coin!");
     }
 
-    /*public void Build()
+    public void PowerStationBuild()
     {
-        if (buildReady == true)
+            building = 2;
+    }
+
+    public void MetalFactoryBuild()
+    {
+            building = 3;
+    }
+
+    public void Upgrade()
+    {
+        upgradeCount += 1;
+        if (upgradeCount == 1)
         {
-            if (building == 1)
-            Instantiate(tile, new Vector3(3.5f, 0, -1.1f), transform.rotation);
+            Instantiate(tile, new Vector3(transform.position.x + 10f, transform.position.y - 1, transform.position.z), transform.rotation);
+            Instantiate(tile, new Vector3(transform.position.x + 5, transform.position.y - 1, transform.position.z + 5), transform.rotation);
+            Instantiate(tile, new Vector3(transform.position.x + 5, transform.position.y - 1, transform.position.z - 5), transform.rotation);
+            Instantiate(tile, new Vector3(transform.position.x - 10f, transform.position.y - 1, transform.position.z), transform.rotation);
+            Instantiate(tile, new Vector3(transform.position.x - 5, transform.position.y - 1, transform.position.z + 5), transform.rotation);
+            Instantiate(tile, new Vector3(transform.position.x - 5, transform.position.y - 1, transform.position.z - 5), transform.rotation);
+            Instantiate(tile, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z + 10), transform.rotation);
+            Instantiate(tile, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z - 10), transform.rotation);
         }
-    }*/
+        if (upgradeCount == 2)
+        {
+            Instantiate(tile, new Vector3(transform.position.x + 15f, transform.position.y - 1, transform.position.z), transform.rotation);
+            Instantiate(tile, new Vector3(transform.position.x - 15f, transform.position.y - 1, transform.position.z), transform.rotation);
+            Instantiate(tile, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z + 15), transform.rotation);
+            Instantiate(tile, new Vector3(transform.position.x, transform.position.y - 1, transform.position.z - 15), transform.rotation);
+        }
+
+
+    }
 
     private bool isShowing;
 }

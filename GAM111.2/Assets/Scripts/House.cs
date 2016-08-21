@@ -7,6 +7,9 @@ public class House : MonoBehaviour {
     public GameObject villager;
     public GameObject miner;
 
+    GameController gameController;
+    UI UIController;
+
     public Queue<string> unitQueue;
 
     public string currentUnit = "none";
@@ -15,20 +18,38 @@ public class House : MonoBehaviour {
 
     public float maxUnitProgress;
     public float unitProgress;
+    public float timer;
 
     public bool spawnUnits = false;
 
     // Use this for initialization
     void Start () {
+     //   menu.SetActive(isShowing);
+
         unitQueue = new Queue<string>();
-        
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        UIController = GameObject.FindGameObjectWithTag("UI").GetComponent<UI>();
     }
 
-	// Update is called once per frame
-	void Update () {
-        SpawnVillager();
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            UIController.isShowing = !UIController.isShowing;
+            UIController.houseMenu.SetActive(UIController.isShowing);
+        }
+    }
 
-	}
+    // Update is called once per frame
+    void Update () {
+        SpawnVillager();
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            gameController.energy -= 0.5f;
+            timer = 0.4f;
+        }
+    }
 
     public void AddVillager()
     {

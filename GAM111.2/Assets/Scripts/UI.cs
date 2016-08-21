@@ -6,26 +6,29 @@ public class UI : MonoBehaviour {
     public GameObject houseMenu;
     GameController gameController;
 
-    private bool isShowing;
+    public bool isShowing;
 
     public Text woodText;
+    // public Text energyText;
+    public Text metalText;
+    public Slider healthText;
 
     public int woodUI;
+    public float energyUI;
+    public int metalUI;
 
     // Use this for initialization 
     void Start()
     {
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        SetWoodText();
         houseMenu.SetActive(isShowing);
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        woodText.text = "Wood: " + woodUI.ToString();
-        woodUI = gameController.wood;
-        if(Input.GetMouseButtonDown(0))
+        SetText();
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -42,17 +45,17 @@ public class UI : MonoBehaviour {
 
     }
 
-    void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            isShowing = !isShowing;
-            houseMenu.SetActive(isShowing);
-        }
-    }
 
-    void SetWoodText()
+
+    void SetText()
     {
-        
+        woodText.text = "Wood: " + woodUI.ToString();
+        woodUI = gameController.wood;
+        // energyText.text = "Energy: " + energyUI.ToString("f0");
+        // energyUI = gameController.energy;
+        metalText.text = "Metal: " + metalUI.ToString();
+        metalUI = gameController.metal;
+        healthText.value = gameController.energy;
+
     }
 }
