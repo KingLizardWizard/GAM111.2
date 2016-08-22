@@ -5,11 +5,15 @@ using System.Collections.Generic;
 public class SelectionManager : MonoBehaviour {
     public GameObject selectionTriggerPrefab;
 
+    GameController gameController;
+
+    // Lists
     public List<GameObject> selectedUnits = new List<GameObject>();
+    // Bools
     public bool isSelecting = false;
     public bool inPlacementMode = false;
-
     public bool mousePositionValid = false;
+    // V3's
     public Vector3 mousePosition; // position in world space
     public Vector3 mousePositionA;
     public Vector3 mousePositionB;
@@ -17,6 +21,7 @@ public class SelectionManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
     }
 
@@ -84,8 +89,12 @@ public class SelectionManager : MonoBehaviour {
 
     public void PlaceBuilding(GameObject placementPrefab)
     {
-        if (!inPlacementMode)
+        // Tests if in placement mode and if there are enough resources to build the booster
+        if (!inPlacementMode && gameController.metal > gameController.boosterMetalCost & gameController.wood > gameController.boosterWoodCost)
         {
+            // minus the resources used to build the booster
+            gameController.metal -= gameController.boosterMetalCost;
+            gameController.wood -= gameController.boosterWoodCost;
             // put us in placement mode
             inPlacementMode = true;
 
@@ -100,7 +109,7 @@ public class SelectionManager : MonoBehaviour {
         }
         else
         {
-            // TODO: change the placement object
+
         }
     }
 }

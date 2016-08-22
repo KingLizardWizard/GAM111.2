@@ -52,17 +52,11 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -75,28 +69,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BuildingPlacement.cs" />
-    <Compile Include="Assets\Enemy1.cs" />
-    <Compile Include="Assets\EnemyBuilding.cs" />
-    <Compile Include="Assets\EnemyMine.cs" />
-    <Compile Include="Assets\EnergyPlant.cs" />
-    <Compile Include="Assets\MetalFactory.cs" />
-    <Compile Include="Assets\MetalTrigger.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Base.cs" />
     <Compile Include="Assets\Scripts\BuildingDisplay.cs" />
+    <Compile Include="Assets\Scripts\BuildingPlacement.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Cover.cs" />
+    <Compile Include="Assets\Scripts\EnergyPlant.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\GameOverScreen.cs" />
     <Compile Include="Assets\Scripts\House.cs" />
+    <Compile Include="Assets\Scripts\MenuController.cs" />
+    <Compile Include="Assets\Scripts\MetalFactory.cs" />
+    <Compile Include="Assets\Scripts\MetalTrigger.cs" />
+    <Compile Include="Assets\Scripts\Rocket.cs" />
     <Compile Include="Assets\Scripts\SelectionManager.cs" />
+    <Compile Include="Assets\Scripts\SelectionTrigger.cs" />
     <Compile Include="Assets\Scripts\Tile.cs" />
+    <Compile Include="Assets\Scripts\UFO.cs" />
     <Compile Include="Assets\Scripts\UI.cs" />
     <Compile Include="Assets\Scripts\Villager.cs" />
     <Compile Include="Assets\Scripts\WoodTrigger.cs" />
-    <Compile Include="Assets\SelectionTrigger.cs" />
-    <Compile Include="Assets\UFO.cs" />
-    <Compile Include="Assets\UfoBeamTrigger.cs" />
-    <Compile Include="Assets\Warrior.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ProjectSettings\ProjectVersion.txt" />

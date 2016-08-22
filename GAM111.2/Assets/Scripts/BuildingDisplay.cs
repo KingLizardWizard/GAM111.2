@@ -20,6 +20,8 @@ public class BuildingDisplay : MonoBehaviour {
      //   Destroy(this.gameObject);
     }
 
+    // The display for where to place a booster
+    // Once the spot has been picked another script grabs the build bool and this object destroys itself
     void OnMouseEnter()
     {
         if(Input.GetMouseButtonDown(0))
